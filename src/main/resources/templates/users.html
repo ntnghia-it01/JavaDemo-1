@@ -29,6 +29,7 @@
             <th scope="col">Email</th>
             <th scope="col">Active</th>
             <th scope="col">Role</th>
+            <th scope="col">Action</th>
           </tr>
         </thead>
         <tbody>
@@ -43,6 +44,11 @@
               <td th:text="${item.active ? 'Active' : 'Blocked'}"></td>
               <!-- Role if role == 0 => "Admin" : "User" -->
               <td th:text="${item.role == 0 ? 'Admin' : 'User'}"></td>
+              <td class="d-flex gap-3">
+                <!-- Click vào thẻ a update chuyển trang /add-user?id=2 => item.id == 2 -->
+                <a name="" id="" class="btn btn-primary" th:href="${'/add-user?id=' + item.id}" role="button">Update</a>
+                <a name="" id="" class="btn btn-danger" href="#" role="button">Delete</a>
+              </td>
             </tr>
           </th:block>
           <!-- <tr class="">
