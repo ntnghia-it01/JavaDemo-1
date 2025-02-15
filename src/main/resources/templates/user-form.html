@@ -17,33 +17,44 @@
     <div class="col-6 offset-3">
       <div class="w-100 text-center">
         <h1>Add User</h1>
+        <div th:text="${error}"></div>
       </div>
-      <form method="post" action="/add-user" enctype="multipart/form-data">
+      <form th:object="${user}" method="post" action="/add-user" enctype="multipart/form-data">
+        <th:block th:if="*{id != null}">
+          <input type="hidden" th:value="*{id.get()}"/>
+        </th:block>
+
         <div class="mb-3">
           <label for="" class="form-label">Username</label>
-          <input type="text" class="form-control" name="username" />
+          <input th:value="*{username}" type="text" class="form-control" name="username" />
         </div>
+
         <div class="mb-3">
           <label for="" class="form-label">Password</label>
-          <input type="password" class="form-control" name="password" />
+          <input th:value="*{password}" type="password" class="form-control" name="password" />
         </div>
+
         <div class="mb-3">
           <label for="" class="form-label">Email</label>
-          <input type="text" class="form-control" name="email" />
+          <input th:value="*{email}" type="text" class="form-control" name="email" />
         </div>
+
         <div class="mb-3">
           <label for="" class="form-label">Name</label>
-          <input type="text" class="form-control" name="name" />
+          <input th:value="*{name}" type="text" class="form-control" name="name" />
         </div>
+
         <div class="mb-3">
           <label for="" class="form-label">Avatar</label>
-          <input type="file" class="form-control" name="avatar" accept="image/*" />
+          <input type="file" class="form-control" name="avatar" accept="image/*"/>
         </div>
+
         <input class="btn btn-primary" type="submit" value="Add User" />
+
       </form>
     </div>
-
   </div>
+  <!-- Bootstrap JavaScript Libraries -->
   <script src="https://cdn.jsdelivr.net/npm/@popperjs/core@2.11.8/dist/umd/popper.min.js"
     integrity="sha384-I7E8VVD/ismYTF4hNIPjVp/Zjvgyol6VFvRkX/vR+Vc4jQkC+hVqc2pM8ODewa9r"
     crossorigin="anonymous"></script>

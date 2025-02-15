@@ -1,5 +1,7 @@
 package com.fpoly.java5.beans;
 
+import java.util.Optional;
+
 import org.hibernate.validator.constraints.Length;
 import org.springframework.web.multipart.MultipartFile;
 
@@ -13,41 +15,39 @@ import lombok.NoArgsConstructor;
 @NoArgsConstructor
 @Data
 public class UserBean {
+  private Optional<Integer> id;
   // Không rỗng
   @NotBlank(message = "Username không rỗng")
   private String username;
   // Không rỗng
-  // Tối thiểu 6 ký tự
+  // 6 ký tự
   @NotBlank(message = "Password không rỗng")
-  @Length(min = 6, message = "Password tối thiểu 6 ký tự")
+  @Length(min = 6, message = "Tối thiểu 6 ký tự")
   private String password;
   // Không rỗng
   // Đúng định dạng
   @NotBlank(message = "Email không rỗng")
-  @Email(message = "Email không đúng định dạng")
+  @Email(message = "Email sai định dạng")
   private String email;
   // Không rỗng
   @NotBlank(message = "Name không rỗng")
   private String name;
 
-  // Viết func để kiểm tra lỗi
-  // Bắt buộc chọn file
-  // Độ lớn tối đa là 20MB
-  private MultipartFile avatar; // ll != null
+  private MultipartFile avatar;
 
   public String isAvatarError(){
-
     if(avatar.isEmpty()){
       return "Avatar bắt buộc";
     }
 
-    double size = avatar.getSize() / 1024 / 1024;
+    double size = avatar.getSize() / 1024 / 1024; //=> bytes
 
     if(size > 20){
-      return "Độ lớn tối đa là 20MB";
+      return "Độ lớn tối đa của ảnh là 20MB";
     }
 
-
+    // bắt buộc phải upload avatar
+    // Độ lớn tối đa là 20MB
     return null;
   }
 }
