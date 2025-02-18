@@ -62,6 +62,7 @@ public class UserController {
             // Set giá trị từ entity qua bean (userBean)
 
             if(userOptional.isPresent()){
+                // Select được user từ db
                 userBean.setId(id);
                 userBean.setUsername(userOptional.get().getUsername());
                 userBean.setPassword(userOptional.get().getPassword());

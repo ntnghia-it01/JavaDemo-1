@@ -47,7 +47,10 @@
               <td class="d-flex gap-3">
                 <!-- Click vào thẻ a update chuyển trang /add-user?id=2 => item.id == 2 -->
                 <a name="" id="" class="btn btn-primary" th:href="${'/add-user?id=' + item.id}" role="button">Update</a>
-                <a name="" id="" class="btn btn-danger" href="#" role="button">Delete</a>
+                <form method="post" action="/delete-user">
+                  <input name="id" th:value="${item.id}" type="hidden"/>
+                  <input class="btn btn-danger w-auto" href="#" type="submit" value="Delete"/>
+                </form>
               </td>
             </tr>
           </th:block>

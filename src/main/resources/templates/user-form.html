@@ -21,7 +21,7 @@
       </div>
       <form th:object="${user}" method="post" action="/add-user" enctype="multipart/form-data">
         <th:block th:if="*{id != null}">
-          <input type="hidden" th:value="*{id.get()}"/>
+          <input type="hidden" th:value="*{id.get()}" name="id"/>
         </th:block>
 
         <div class="mb-3">
