@@ -1,5 +1,6 @@
 package com.fpoly.java5.controllers;
 
+import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.stereotype.Controller;
 import org.springframework.ui.Model;
 import org.springframework.web.bind.annotation.GetMapping;
@@ -7,9 +8,13 @@ import org.springframework.web.bind.annotation.PostMapping;
 import org.springframework.web.bind.annotation.RequestParam;
 
 import com.fpoly.java5.beans.LoginBean;
+import com.fpoly.java5.services.UserService;
 
 @Controller
 public class AuthController {
+
+  @Autowired
+  UserService userService;
 
   @GetMapping("/login")
   public String login() {
@@ -37,6 +42,9 @@ public class AuthController {
     if(password.length() < 6 || password.isBlank()){
       model.addAttribute("errorPassword", "Password must be at least 6 characters");
     }
+
+    boolean checkLogin = userService.checkLogin(username, password);
+    // 
     
     return "/login.html";
   }
