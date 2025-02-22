@@ -42,15 +42,6 @@ public class PermissionComponents implements HandlerInterceptor{
       return true;
     }
 
-    // /admin/abc
-    // /user/cart
-    // /user/order
-    // /user/order-detail
-    
-    // /
-    // /login
-    // /regsiter
-
     if(role == 1 && path.contains("/user")){
       return true;
     }
