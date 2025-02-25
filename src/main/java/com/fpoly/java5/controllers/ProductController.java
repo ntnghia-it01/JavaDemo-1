@@ -12,12 +12,22 @@ import org.springframework.web.bind.annotation.PostMapping;
 import com.fpoly.java5.beans.ProductBean;
 import com.fpoly.java5.entities.Category;
 import com.fpoly.java5.jpas.CategoryJPA;
+import com.fpoly.java5.jpas.ProductJPA;
 
 @Controller
 public class ProductController {
 
   @Autowired
   CategoryJPA categoryJPA;
+
+  @Autowired
+  ProductJPA productJPA;
+
+  @GetMapping("/user/products")
+  public String products(Model model){
+    model.addAttribute("products", productJPA.findAll());
+    return "/products.html";
+  }
   
   @GetMapping("/product-form")
   public String productForm(){
